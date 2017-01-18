@@ -8,23 +8,32 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  ScrollView,
+  Dimensions,
+  TextInput,
   Text,
   View
 } from 'react-native';
 
 export default class T1 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
+        <View style={styles.title}>
+          <Text style={styles.text}>
+            Eric & Kelly 婚禮邀請單
+          </Text>
+        </View>
+        <TextInput style={styles.textinput} editable = {true} maxLengh ={200}
+            onChangeText = {(text) => this.setState({text})}
+            value={this.state.text}
+        />
+        <Text style={styles.note}>
+          如填完表單但要修改出席內容，再麻煩主動告知喔!{'\n'}感謝。
         </Text>
       </View>
     );
@@ -34,20 +43,40 @@ export default class T1 extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  title: {
+    marginTop: 5,
+    width:width,
+    height: 100,
+    alignItems:'center',
   },
-  instructions: {
+  text: {
+    fontSize:20,
+    fontWeight:'bold',
+  },
+  textarea: {
+    flex: 1,
+  },
+  textinput: {
+    height: width,
+    width: height,
+    marginTop: -50,
+    borderColor: 'black',
+    marginLeft:5,
+    marginRight:5, 
+    backgroundColor: 'red',
+    justifyContent: 'flex-start',
+    textAlignVertical: 'top',
+  },
+  note: {
     textAlign: 'center',
-    color: '#333333',
+    color: 'red',
     marginBottom: 5,
   },
 });
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 
 AppRegistry.registerComponent('T1', () => T1);
